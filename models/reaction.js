@@ -24,13 +24,7 @@ const reactionSchema = new Schema(
     },
   },
 
-  {
-    toJSON: {
-      // getters: true,
-    },
-    id: false,
-  } //configuration object that specifies how to convert the document to a JSON object.
 );
 
-const Reaction = model("reaction", reactionSchema);
-module.exports = Reaction;
+
+module.exports = reactionSchema;
