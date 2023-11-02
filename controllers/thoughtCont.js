@@ -13,21 +13,18 @@ module.exports = {
     }
   },
 
-//   // Get single user by ID
+  // Get single thought by ID
 
-//   async getUserID(req, res) {
-//     try {
-//       const user = await User.findOne({ _id: req.params.userID })
-//       .select('-__v')
-//        .populate('friends')
-//        .populate('thoughts');
-//       res.json(user);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   },
+  async getThoughtID(req, res) {
+    try {
+      const thought = await Thought.findOne({ _id: req.params.thoughtID })
+      res.json(thought);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
-//   // add single user to system
+//   // add single thought to system
   async addThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
@@ -37,28 +34,28 @@ module.exports = {
     }
   },
 
-//   // delete user by ID
-//   async delUserID(req, res) {
-//     try {
-//       const user = await User.deleteOne({ _id: req.params.userID });
-//       res.json(user);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   },
+  // delete thought by ID
+  async delThoughtID(req, res) {
+    try {
+      const thought = await Thought.deleteOne({ _id: req.params.thoughtID });
+      res.json(thought);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
-//   // update user by ID
-//   async putUserID(req, res) {
-//     try {
-//       const user = await User.updateOne(
-//         { _id: req.params.userID },
-//         { $set: req.body }
-//       );
-//       res.json(user);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   },
+  // update user by ID
+  async putThoughtID(req, res) {
+    try {
+      const user = await Thought.updateOne(
+        { _id: req.params.thoughtID },
+        { $set: req.body }
+      );
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
 //   // add friend to a user
 
