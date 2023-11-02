@@ -1,8 +1,6 @@
-
-const { Thought, User } = require("../models");
+const { Thought, User, Reaction } = require("../models");
 
 module.exports = {
-
   // Get list of all users
   async getThoughts(req, res) {
     try {
@@ -17,14 +15,14 @@ module.exports = {
 
   async getThoughtID(req, res) {
     try {
-      const thought = await Thought.findOne({ _id: req.params.thoughtID })
+      const thought = await Thought.findOne({ _id: req.params.thoughtID });
       res.json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
   },
 
-//   // add single thought to system
+  //   // add single thought to system
   async addThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
@@ -44,7 +42,7 @@ module.exports = {
     }
   },
 
-  // update user by ID
+  // update thought by ID
   async putThoughtID(req, res) {
     try {
       const user = await Thought.updateOne(
@@ -57,36 +55,29 @@ module.exports = {
     }
   },
 
-//   // add friend to a user
+  // add reaction to thought
+  async putReact(req, res) {
+    try {
+      const thought = await Thought.updateOne(
+        { _id: req.params.thoughtID },
+        { $push: { reactions: req.body } }
+      );
+      res.json(thought);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
-//   async addFriend(req, res) {
-//     try {
-//       const user = await User.updateOne(
-//         { _id: req.params.userID },
-//         { $push: { friends: { _id: req.params.friendID } } }
-//       );
-//       res.json(user);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   },
-
-//   // delete friend
-
-//   async delFriend(req, res) {
-//     try {
-//       const user = await User.updateOne(
-//         { _id: req.params.userID },
-//         { $pull: { friends: { _id: req.params.friendID } } }
-//       );
-//       res.json(user);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   },
-
-
-
+  // delete reaction
+  async delReact(req, res) {
+    try {
+      const thought = await Thought.updateOne(
+        { _id: req.params.thoughtID },
+        { $pull: { reactions: { _id: req.params.thoughtID } } }
+      );
+      res.json(thought);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
-
-
