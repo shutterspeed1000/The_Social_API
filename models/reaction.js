@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
-// const Reaction = require("./Reaction");
+const moment = require("moment");
+
 
 // create schema for user info
 
@@ -21,8 +22,17 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (value) =>
+      moment(value).format("MMM DD, YYYY [at] hh:mm a"),
     },
   },
+
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: true,
+  }
 
 );
 
