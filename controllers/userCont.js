@@ -62,7 +62,7 @@ module.exports = {
 
   async addFriend(req, res) {
     try {
-      const user = await User.updateOne(
+      const user = await User.findOneAndUpdate(
         { _id: req.params.userID },
         { $push: { friends: { _id: req.params.friendID } } }
       );
@@ -76,9 +76,9 @@ module.exports = {
 
   async delFriend(req, res) {
     try {
-      const user = await User.updateOne(
+      const user = await User.findOneAndUpdate(
         { _id: req.params.userID },
-        { $pull: { friends: { _id: req.params.friendID } } }
+        { $pull: { friends: req.params.friendID  } }
       );
       res.json(user);
     } catch (err) {

@@ -16,6 +16,9 @@ router.route('/').get(getThoughts).post(addThought)
 // delete and view and update by id
 router.route('/:thoughtID').get(getThoughtID).delete(delThoughtID).put(putThoughtID)
 
-router.route('/:thoughtID/reactions/').put(putReact).put(delReact)
+router.route('/:thoughtID/reactions/').put(putReact)
+
+router.route('/:thoughtID/reactions/:reactID').delete(delReact)
+
 
 module.exports = router

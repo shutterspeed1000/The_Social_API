@@ -39,7 +39,7 @@ Technology used based on class materal:
 
 ## Video
 
-![Screenshot of Website](./assets/images/sw-port.png)
+https://drive.google.com/file/d/1lB1TSAuBUECPjxmpbEQyR-rim-Ohrr_A/view
 
 
 ## License

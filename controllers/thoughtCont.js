@@ -73,7 +73,7 @@ module.exports = {
     try {
       const thought = await Thought.updateOne(
         { _id: req.params.thoughtID },
-        { $pull: { reactions: { _id: req.params.thoughtID } } }
+        { $pull: { reactions: { _id: req.params.reactID } } }
       );
       res.json(thought);
     } catch (err) {
